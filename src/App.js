@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      head_text: "Random Boy",
+      peopleNumber: 0,
+      numberGiven: 0,
+    };
+    this.inputPeople = this.inputPeople.bind(this);
+    this.submitData = this.submitData.bind(this);
+    // this.randomPeople = this.randomPeople.bind(this);
+  }
+
+  inputPeople(event){
+    this.setState({
+      peopleNumber: event.target.value
+    });
+    // let newNumber;
+    // newNumber = parseInt(Math.random()*this.state.peopleNumber) + 1;
+    // this.setState({ 
+    //   numberGiven: newNumber
+    // });
+  }
+
+  submitData(){
+    let newNumber;
+    newNumber = parseInt(Math.random()*this.state.peopleNumber) + 1;
+    this.setState({ 
+      numberGiven: newNumber,
+      text: "submit",
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          {this.state.head_text}
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div class="content">
+          <div class="input">
+            <input value={this.state.peopleNumber} onChange={this.inputPeople} />
+            <button onClick={this.submitData}>{this.state.text}</button>
+          </div>
+          <div class="random">
+            <p>{this.state.numberGiven}</p>
+          </div>
+        </div>
       </div>
     );
   }
