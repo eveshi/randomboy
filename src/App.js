@@ -1,9 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 
+class coolHead extends React.Component {
+  constructor(props){
+    this.state = {
+      headText: "Random Boy",
+      menuFlag: false,
+    };
+  }
 
+  menu(){
+    if(this.state.menuFlag){
+      this.setState({
+        menuFlag: false
+      });
+    }else{
+      this.setState({
+        menuFlag: true
+      });
+    }
+  }
 
-class App extends Component {
+  render(){
+    return(
+      <header>
+        <button onClick={this.menu}>
+          <image src={menuImg} style={menuFlag=="true"?"display:show":"display:none"} />
+        </button>
+      </header>
+    )
+  }
+}
+
+class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
