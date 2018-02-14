@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 
+class menuContent extends React.Component {
+  constructor(props){
+
+  }
+
+  render(){
+    return(
+      <li></li>
+    )
+  }
+}
+
 class coolHead extends React.Component {
   constructor(props){
     this.state = {
@@ -23,11 +35,16 @@ class coolHead extends React.Component {
 
   render(){
     return(
-      <header>
+      <div class="menu">
         <button onClick={this.menu}>
-          <image src={menuImg} style={menuFlag=="true"?"display:show":"display:none"} />
+          <image src={menuImg}></image>
         </button>
-      </header>
+        <div class="menuContent" style={menuFlag? "display:none":""}>
+          <form>
+            <ul><menuContent></menuContent></ul>
+          </form>
+        </div>
+      </div>
     )
   }
 }
