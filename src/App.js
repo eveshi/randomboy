@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './person/person';
+import Menu from './menu/menu';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       head_text: "Random Boy",
+      menu: [
+        { id: "rp", name: "Random Person" },
+        { id: "rm", name: "Random Movie" },
+        { id: "rms", name: "Random Music" },
+        { id: "rres", name: "Random Restaurant" },
+      ],
       peopleNumber: 0,
-      numberGiven: 0,
     };
-    this.inputPeople = this.inputPeople.bind(this);
-    // this.submitData = this.submitData.bind(this);
-    // this.randomPeople = this.randomPeople.bind(this);
   }
-
-  inputPeople(event){
+ 
+  inputPeople = ( event ) => {
     this.setState({
       peopleNumber: event.target.value
     });
   }
 
-  // submitData(){
-  //   let newNumber;
-  //   newNumber = parseInt(Math.random()*this.state.peopleNumber) + 1;
-  //   this.setState({ 
-  //     numberGiven: newNumber,
-  //     text: "submit",
-  //   });
-  // }
-
   render() {
+    // const menu = this.state.
+
     return (
       <div className="App">
         <header className="App-header">
