@@ -2,12 +2,15 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.choose {
+  background-color: #eee;
 }
 
-.App-header {
+.notChoose {
+  background-color: #fff; 
+}
+
+.header {
   background-color: #222;
   height: 150px;
   padding: 20px;

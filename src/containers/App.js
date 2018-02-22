@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './App.css';
-import Person from './person/person';
-import Menu from './menu/menu';
+import React, { PureComponent } from 'react';
+import classes from './App.css';
+import Person from '../components/person/person';
+import Menu from '../components/menu/menu';
 
-class App extends React.Component {
+class App extends PureComponent {
   constructor(props){
     super(props);
     this.state = {
@@ -16,6 +16,10 @@ class App extends React.Component {
       ],
       peopleNumber: 0,
     };
+  }
+
+  shouldComponentUpdate( nextProps, nextState ){
+    return nextProps.menu !== this.state.menu
   }
 
   menuChoose = ( event, id ) => {
@@ -37,6 +41,7 @@ class App extends React.Component {
     this.setState({
       menu: menu
     });
+    console.log("changed")
   }
  
   inputPeople = ( event ) => {
@@ -46,32 +51,16 @@ class App extends React.Component {
   }
 
   render() {
-    const styleChoose = {
-      backgroundColor: "#eee", 
-    };
-
-    const styleNotChoose = {
-      backgroundColor: "#fff",  
-    }
-
-    const menu = (
-      <div>
-        {this.state.menu.map((item) => {
-          return <Menu
-          click={(event) => this.menuChoose(event, item.id)}
-          key={item.id} 
-          name={item.name}
-          goodStyle={item.choose?styleChoose:styleNotChoose} ></Menu>
-        })}
-      </div>
-    )
-
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={classes.App}>
+        <header className={classes.header}>
           {this.state.head_text}
         </header>
-        {menu}
+        <div>
+          <Menu 
+          menu={this.state.menu}
+          click={this.menuChoose} />
+        </div>
         <div className="content">
           <Person change={this.inputPeople} person={this.state.peopleNumber}></Person>
         </div>
