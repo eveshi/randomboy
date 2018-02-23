@@ -1,6 +1,6 @@
 import React from 'react';
 import NameList from './nameList/nameList';
-import Aux from '../../hoc/aux'
+import Aux from '../../hoc/aux/aux'
 
 const randomName = (props) => {
     return (
