@@ -45,7 +45,7 @@ class RandomPeople extends Component {
     }
 
     newOrder = () => {
-        const nameList = this.state.peopleName;
+        const nameList = [...this.state.peopleName];
         const newNameList = nameList.sort(( a, b ) => ( a.id - b.id ));
         this.setState({
             newNameList: newNameList
