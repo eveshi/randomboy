@@ -1,27 +1,53 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import axios from 'axios';
 
-class ChooseMovie extends Component {
+class ChooseMovie extends PureComponent {
     state = {
-        movieNumber: null,
         movieName: 'noData',
-        page: null,
+        movieList: null,
+        order: null,
     }
 
     clickHandler = () => {
         let number = Math.floor(Math.random()*100);
         let page = Math.floor(number/25)*25;
+        console.log(page);
+        const movieList = this.callApi(page);
+        console.log(movieList)
+        const order = number - page;
+        console.log(order)
         this.setState({
-            movieNumber: number,
-            page: page,
-        });
+            movieList: movieList,
+            order: order
+        })
+
     }
 
-    componentDidUpdate () {
-        axios.get('https://www.douban.com/doulist/105743/?start=' + this.state.page + '&sort=time&sub_type=')
-            .then(response => {
-                console.log(response.data)
+    componentDidUpdate (nextProps,nextState) {
+        const movieList = this.state.movieList;
+        const listNew = nextState.movieList;
+        if(movieList.arrayTitle && movieList !== listNew){
+            console.log("i'm updating")
+            const name = movieList.arrayTitle[this.state.order];
+            console.log(name)
+            this.setState({
+                movieName: name
             })
+        }
+    }
+
+    callApi = async(el) => {
+        const response = await axios.get('http://localhost:5000/api/movielist',{
+            params:{
+                page: el
+            }
+        });
+        console.log(response.data)
+        const content = response.data;
+        this.setState({
+            movieList: content
+        });
+        return content;
     }
 
     render () {
