@@ -1,5 +1,5 @@
 import React from 'react';
-import Toolbar from '../../containers/Toolbar/toolbar';
+import Toolbar from './Toolbar/toolbar';
 
 const Layouts = (props) => {
     return (
