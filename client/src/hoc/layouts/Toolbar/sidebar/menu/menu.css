@@ -1,20 +1,16 @@
-.submenu { 
-  background-color: rgba(0, 0, 0, 0);  
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  border-radius: 4px;
+.submenu button {  
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
   padding: 9px;  
   /*position: relative;*/
-  width: 42px; 
+  width: 100%;
+  font-size: 14px;
 }
 
-.submenu:hover {
+.submenu button:hover {
   cursor: pointer;
 }
 
-.choose {
-    background-color: #eee;
-  }
-  
-.notChoose {
-    background-color: #fff; 
-  }
+.submenu button:hover,
+.submenu button:active {
+  background-color: #eee;
+}

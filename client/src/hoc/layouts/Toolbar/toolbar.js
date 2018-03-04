@@ -7,13 +7,14 @@ import icon from '../../../assets/images/menu.png'
 class Toolbar extends Component {
     state = {
         menu: [
-            { id: "rp", name: "Random Person", choose: true },
-            { id: "rm", name: "Random Movie", choose: false },
-            { id: "rms", name: "Random Music", choose: false },
-            { id: "rres", name: "Random Restaurant", choose: false },
+            { id: "rp", name: "Random Person", choose: null },
+            { id: "rm", name: "Random Movie", choose: null },
+            { id: "rms", name: "Random Music", choose: null },
+            { id: "rres", name: "Random Restaurant", choose: null },
         ],
         showSide: false,
     }
+
 
     menuChoose = ( event, id ) => {
         const itemIndex = this.state.menu.findIndex(item => {
