@@ -25,9 +25,6 @@ class ChooseAlbum extends Component {
         this.setState({
             albumList: albumList
         })
-        console.log(liOrder)
-        console.log(order)
-        console.log(this.state.albumList)
     }
 
     componentDidUpdate( nextProps, nextState ){
@@ -37,7 +34,6 @@ class ChooseAlbum extends Component {
         const liOrder = this.state.liOrder;
         const page = this.state.page;
         if( albumList.arrayTitle && albumList !== newList ){
-            console.log("i'm updating")
             const albumName = albumList.arrayTitle[order-250*liOrder-page]
             this.setState({
                 albumName: albumName,
@@ -56,7 +52,6 @@ class ChooseAlbum extends Component {
         this.setState({
             albumList: content,
         })
-        //其实要问一下为什么return的话不能return出来那个值
     }
 
     render(){

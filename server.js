@@ -19,31 +19,24 @@ const getData = async(link) => {
     element = $('.article .title a').eq(i).text();
     arrayTitle = [...arrayTitle, element]
   };
-  console.log(arrayTitle)
-  // res.send({ arrayTitle })
   return arrayTitle;
 } 
 
 app.get('/api/movielist', async(req, res, next) => {
-  // console.log(req.query.page)
   const link = 'https://www.douban.com/doulist/105743/?start=' + req.query.page + '&sort=time&sub_type='
   const arrayTitle = await getData(link)
-  console.log(arrayTitle)
   res.send({ arrayTitle })
 });
 
 app.get('/api/albumList', async(req,res,next) => {
-  console.log('wow');
   const liOrder = req.query.liOrder
   if( liOrder === 0 ){
   const link = 'https://www.douban.com/doulist/200195/?start=' + req.query.page + '&sort=time&sub_type='
   const arrayTitle = await getData(link)
-  console.log(response)
   res.send({ arrayTitle })
   }else{
   const link='https://www.douban.com/doulist/200253/?start=' + req.query.page + '&sort=time&sub_type='
   const arrayTitle = await getData(link)
-  console.log(arrayTitle)
   res.send({ arrayTitle })
   }
 })

@@ -10,7 +10,6 @@ class Toolbar extends Component {
             { id: "rp", name: "Random Person", choose: null },
             { id: "rm", name: "Random Movie", choose: null },
             { id: "rms", name: "Random Music", choose: null },
-            { id: "rres", name: "Random Restaurant", choose: null },
         ],
         showSide: false,
     }
