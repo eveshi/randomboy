@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classes from './chooseAlbum.css';
 
 class ChooseAlbum extends Component {
     state={
-        albumName: null,
+        albumName: 'noData',
         albumList: null,
         liOrder: null,
         page: null,
@@ -20,22 +21,24 @@ class ChooseAlbum extends Component {
             liOrder = 1;
             page = Math.floor((order-250)/25)*25
         }
+        const albumList = this.callApi(liOrder, page)
         this.setState({
-            order: order,
-            liOrder: liOrder,
-            page: page
+            albumList: albumList
         })
-        this.callApi(liOrder,page);
+        console.log(liOrder)
+        console.log(order)
+        console.log(this.state.albumList)
     }
 
-    componentWillUpdate( nextProps, nextState ){
+    componentDidUpdate( nextProps, nextState ){
         const albumList = this.state.albumList;
         const newList = nextState.albumList;
         const order = this.state.order;
         const liOrder = this.state.liOrder;
         const page = this.state.page;
-        if( albumList && albumList !== this.state.albumList){
-            const albumName = albumList[order-250*liOrder-page]
+        if( albumList.arrayTitle && albumList !== newList ){
+            console.log("i'm updating")
+            const albumName = albumList.arrayTitle[order-250*liOrder-page]
             this.setState({
                 albumName: albumName,
             })
@@ -43,7 +46,7 @@ class ChooseAlbum extends Component {
     }
 
     callApi = async(liOrder, page) => {
-        const response = await axios.get("localhost:5000/api/albumList",{
+        const response = await axios.get("http://localhost:5000/api/albumList",{
             params:{
                 liOrder: liOrder,
                 page: page
@@ -58,7 +61,7 @@ class ChooseAlbum extends Component {
 
     render(){
         return(
-            <div>
+            <div className={classes.content}>
                 <p>{this.state.albumName}</p>
                 <button onClick={this.clickHandler}>Random Album</button>
             </div>
