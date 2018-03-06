@@ -16,5 +16,3 @@ const menu = (props) => props.menu.map((item) => {
     })
 
 export default menu;
-
-//知道了似乎应该全部改成不是button，或者查一下button的active属性
